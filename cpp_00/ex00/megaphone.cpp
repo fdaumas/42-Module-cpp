@@ -5,7 +5,7 @@ void	str_toupper(char *str)
 	int	index = 0;
 
 	while (str[index])
-		std::cout << (char)toupper(str[index++]);
+		std::cout << (char)std::toupper(str[index++]);
 }
 
 int		main(int argc, char *argv[])
