@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 #___SETUP
-NAME			=
+NAME			=	BraiiiiiiinnnzzzZ
 CC				=	c++
 CSAN			=	-fsanitize=address
 CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)
