@@ -14,16 +14,16 @@
 NAME			=	PhoneBook
 CC				=	c++
 CSAN			=	-fsanitize=address
-CFLAGS			=	-Wall -Wextra -Werror #$(CSAN)
+CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)
 RM				=	rm -rf
 
 #	FILE & PATH
 HEADER			=	Contact.hpp\
-					Phonebook.hpp
+					PhoneBook.hpp
 
 SRCS			=	Contact.cpp\
 					main.cpp\
-					Phonebook.cpp
+					PhoneBook.cpp
 
 DIR_OBJS		=	.objs
 LST_OBJS		=	$(SRCS:.cpp=.o)
