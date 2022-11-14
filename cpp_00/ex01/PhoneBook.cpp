@@ -56,13 +56,15 @@ void PhoneBook::put_nickname(int index) {
 }
 
 void PhoneBook::put_all(int index) {
-	std::cout << "first name   : " << this->_array_contact[index].get_first_name()
+	std::cout << "first name     : " << this->_array_contact[index].get_first_name()
 	<< std::endl;
-	std::cout << "last name    : " << this->_array_contact[index].get_last_name()
+	std::cout << "last name      : " << this->_array_contact[index].get_last_name()
 	<< std::endl;
-	std::cout << "nickname     : " << this->_array_contact[index].get_nickname()
+	std::cout << "nickname       : " << this->_array_contact[index].get_nickname()
 	<< std::endl;
-	std::cout << "phone number : " << this->_array_contact[index].get_phone_number()
+	std::cout << "phone number   : " << this->_array_contact[index].get_phone_number()
+	<< std::endl;
+	std::cout << "darkest secret : " << this->_array_contact[index].get_darkest_secret()
 	<< std::endl;
 }
 
