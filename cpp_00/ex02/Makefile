@@ -14,7 +14,7 @@
 NAME			=	The_Job_Of_Your_Dreams
 CC				=	c++
 CSAN			=	-fsanitize=address
-CFLAGS			=	-Wall -Wextra -Werror -stdcm	++98 #$(CSAN)
+CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)
 RM				=	rm -rf
 
 #	FILE & PATH
