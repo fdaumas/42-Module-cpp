@@ -17,7 +17,7 @@ public :
 	void search_contact();
 
 private:
-	Contact array_contact[8];
+	Contact _array_contact[8];
 };
 
 #endif

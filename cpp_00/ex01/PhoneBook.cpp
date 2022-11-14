@@ -1,5 +1,5 @@
 #include "PhoneBook.hpp"
-#include <iostream>
+#include <iomanip>
 
 PhoneBook::PhoneBook() {
 }
@@ -7,82 +7,62 @@ PhoneBook::PhoneBook() {
 PhoneBook::~PhoneBook() {
 }
 
-void PhoneBook::put_line(int index) {
-	std::cout << "|         " << index << "|";
-	this->put_first_name(index);
-	std::cout << '|';
-	this->put_last_name(index);
-	std::cout << '|';
-	this->put_nickname(index);
-	std::cout << '|' << std::endl;
+void PhoneBook::add_contact(int index) {
+	this->_array_contact[index].set_all();
 }
 
-void PhoneBook::add_contact(int index) {
-	this->array_contact[index].set_all();
+void PhoneBook::put_line(int index) {
+	std::cout << "|" << std::right << std::setw(10) << index << std::setfill(' ');
+	put_first_name(index);
+	put_last_name(index);
+	put_nickname(index);
+	std::cout << "|" << std::endl;
 }
 
 void PhoneBook::put_first_name(int index) {
-	std::string new_first_name;
-	int index_str = 0;
-
-	if (this->array_contact[index].get_first_name().length() >= 10) {
-		new_first_name = this->array_contact[index].get_first_name();
-		new_first_name[9] = '.';
-		while (index_str < 10)
-			std::cout << new_first_name[index_str++];
+	if (this->_array_contact[index].get_first_name().length() > 10) {
+		int index_str = 0;
+		std::cout << "|";
+		while (index_str < 9)
+			std::cout << this->_array_contact[index].get_first_name()[index_str++];
+		std::cout << ".";
 	}
-	else {
-		new_first_name = this->array_contact[index].get_first_name();
-		while (new_first_name.length() + index_str++ < 10)
-			std::cout << ' ';
-		std::cout << new_first_name ;
-	}
+	else
+		std::cout << "|" << std::right << std::setw(10) << this->_array_contact[index].get_first_name() << std::setfill(' ');
 }
 
 void PhoneBook::put_last_name(int index) {
-	std::string new_last_name;
-	int index_str = 0;
-
-	if (this->array_contact[index].get_last_name().length() >= 10) {
-		new_last_name = this->array_contact[index].get_last_name();
-		new_last_name[9] = '.';
-		while (index_str < 10)
-			std::cout << new_last_name[index_str++];
+	if (this->_array_contact[index].get_last_name().length() > 10) {
+		int index_str = 0;
+		std::cout << "|";
+		while (index_str < 9)
+			std::cout << this->_array_contact[index].get_last_name()[index_str++];
+		std::cout << ".";
 	}
-	else {
-		new_last_name = this->array_contact[index].get_last_name();
-		while (new_last_name.length() + index_str++ < 10)
-			std::cout << ' ';
-		std::cout << new_last_name ;
-	}
+	else
+		std::cout << "|" << std::right << std::setw(10) << this->_array_contact[index].get_last_name() << std::setfill(' ');
 }
 
 void PhoneBook::put_nickname(int index) {
-	std::string new_nickname;
-	int index_str = 0;
-
-	if (this->array_contact[index].get_nickname().length() >= 10) {
-		new_nickname = this->array_contact[index].get_nickname();
-		new_nickname[9] = '.';
-		while (index_str < 10)
-			std::cout << new_nickname[index_str++];
+	if (this->_array_contact[index].get_nickname().length() > 10) {
+		int index_str = 0;
+		std::cout << "|";
+		while (index_str < 9)
+			std::cout << this->_array_contact[index].get_nickname()[index_str++];
+		std::cout << ".";
 	}
-	else {
-		new_nickname = this->array_contact[index].get_nickname();
-		while (new_nickname.length() + index_str++ < 10)
-			std::cout << ' ';
-		std::cout << new_nickname ;
-	}
+	else
+		std::cout << "|" << std::right << std::setw(10) << this->_array_contact[index].get_nickname() << std::setfill(' ');
 }
 
 void PhoneBook::put_all(int index) {
-	std::cout << "first name   : " << this->array_contact[index].get_first_name()
+	std::cout << "first name   : " << this->_array_contact[index].get_first_name()
 	<< std::endl;
-	std::cout << "last name    : " << this->array_contact[index].get_last_name()
+	std::cout << "last name    : " << this->_array_contact[index].get_last_name()
 	<< std::endl;
-	std::cout << "nickname     : " << this->array_contact[index].get_nickname()
+	std::cout << "nickname     : " << this->_array_contact[index].get_nickname()
 	<< std::endl;
-	std::cout << "phone number : " << this->array_contact[index].get_nickname()
+	std::cout << "phone number : " << this->_array_contact[index].get_phone_number()
 	<< std::endl;
 }
 
@@ -98,7 +78,8 @@ void PhoneBook::search_contact() {
 	}
 	std::cout << "_____________________________________________" << std::endl;
 	std::cout << "enter the index of your choice : ";
-	std::cin >> answer;
+	if (!std::getline(std::cin, answer))
+		return ;
 	if ((answer == "EXIT" || answer == "exit") && answer.length() == 4)
 		exit(0);
 	if (answer.length() != 1 || answer < "0" || answer > "7") {

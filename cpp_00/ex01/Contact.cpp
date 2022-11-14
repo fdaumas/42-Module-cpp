@@ -16,22 +16,26 @@ void Contact::set_all() {
 
 void Contact::set_first_name() {
 	std::cout << "first name   : ";
-	std::cin >> this->_first_name;
+	if (!std::getline(std::cin, this->_first_name))
+		exit(0);
 }
 
 void Contact::set_last_name() {
 	std::cout << "last name    : ";
-	std::cin >> this->_last_name;
+	if (!std::getline(std::cin, this->_last_name))
+		exit(0);
 }
 
 void Contact::set_nickname() {
 	std::cout << "nickname     : ";
-	std::cin >> this->_nickname;
+	if (!std::getline(std::cin, this->_nickname))
+		exit(0);
 }
 
 void Contact::set_phone_number() {
 	std::cout << "phone number : ";
-	std::cin >> this->_phone_number;
+	if (!std::getline(std::cin, this->_phone_number))
+		exit(0);
 }
 
 std::string Contact::get_first_name() {

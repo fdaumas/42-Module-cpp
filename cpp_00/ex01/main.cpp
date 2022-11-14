@@ -18,7 +18,8 @@ int	main() {
 
 	while (1) {
 		std::cout << "ADD | SEARCH | EXIT" << std::endl;
-		std::cin >> prompt;
+		if (!std::getline(std::cin, prompt))
+			exit(0);
 		str_toupper(prompt);
 		if (prompt == "ADD" && prompt.length() == 3) {
 			phonebook.add_contact(index);
