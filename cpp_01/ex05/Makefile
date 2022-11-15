@@ -11,16 +11,17 @@
 # **************************************************************************** #
 
 #___SETUP
-NAME			=
+NAME			=	Harl
 CC				=	c++
 CSAN			=	-fsanitize=address
 CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)
 RM				=	rm -rf
 
 #	FILE & PATH
-HEADER			=
+HEADER			=	Harl.hpp
 
-SRCS			=
+SRCS			=	main.cpp\
+					Harl.cpp
 
 DIR_OBJS		=	.objs
 LST_OBJS		=	$(SRCS:.cpp=.o)
