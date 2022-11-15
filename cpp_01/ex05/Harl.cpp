@@ -37,7 +37,6 @@ void Harl::complain(std::string level) {
 	map.insert(std::make_pair("error", &Harl::error));
 
 	my_map::iterator it = map.find(level);
-	if (it == map.end())
-		return ;
-	(this->*(it->second))();
+	if (it != map.end())
+		(this->*(it->second))();
 }
