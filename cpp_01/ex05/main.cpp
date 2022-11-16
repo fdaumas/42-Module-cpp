@@ -14,4 +14,5 @@ int main () {
 	std::cout << "------------" << std::endl;
 	std::cout << "ERROR : " << std::endl;
 	harl.complain("error");
+	return (0);
 }

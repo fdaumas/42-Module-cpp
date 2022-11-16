@@ -17,4 +17,5 @@ int main() {
 	humanb.attack();
 	club2.setType("desert eagle");
 	humanb.attack();
+	return (0);
 }
