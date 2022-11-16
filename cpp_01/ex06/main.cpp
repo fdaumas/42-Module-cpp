@@ -17,6 +17,5 @@ int main (int ac, char *av[]) {
 		std::cout << "bad number of argument" << std::endl;
 		return (1);
 	}
-	if (ac > 1)
-		harl.complain(str_toupper(av[1]));
+	harl.complain(str_toupper(av[1]));
 }
