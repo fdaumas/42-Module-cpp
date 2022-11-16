@@ -18,4 +18,5 @@ int main (int ac, char *av[]) {
 		return (1);
 	}
 	harl.complain(str_toupper(av[1]));
+	return (0);
 }
