@@ -1,5 +1,4 @@
 #include "replaceFile.hpp"
-#include <iostream>
 #include <cstdio>
 #include <cstdlib>
 #include <string>

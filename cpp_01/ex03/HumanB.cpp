@@ -12,9 +12,9 @@ HumanB::~HumanB() {
 
 void HumanB::attack() {
 	if (_weapon != nullptr)
-		std::cout << _name << " attacks with their " << _weapon->getType() << std::endl;
+		std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
 }
 
-void HumanB::set_weapon(Weapon weapon) {
-	_weapon = &weapon;
+void HumanB::setWeapon(Weapon &weapon) {
+	this->_weapon = &weapon;
 }
