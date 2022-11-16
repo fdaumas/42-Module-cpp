@@ -1,6 +1,7 @@
 #include "Harl.hpp"
 
-Harl::Harl() {}
+Harl::Harl() {
+}
 Harl::~Harl() {}
 
 void Harl::debug() {
@@ -30,13 +31,11 @@ void Harl::error() {
 }
 
 void Harl::complain(std::string level) {
-	my_map map;
-	map.insert(std::make_pair("debug", &Harl::debug));
-	map.insert(std::make_pair("info", &Harl::info));
-	map.insert(std::make_pair("warning", &Harl::warning));
-	map.insert(std::make_pair("error", &Harl::error));
+	void (Harl::*farr[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string enter[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int index = 0;
 
-	my_map::iterator it = map.find(level);
-	if (it != map.end())
-		(this->*(it->second))();
+	while (enter[index] != level && index < 4)
+		index++;
+	(this->*farr[index])();
 }

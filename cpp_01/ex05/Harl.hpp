@@ -1,11 +1,11 @@
 #include <iostream>
-#include <map>
 
 class Harl {
 public:
 	Harl(void);
 	~Harl(void);
 
+	void(Harl::*farr[4])(void);
 	void complain(std::string level);
 
 private:
@@ -14,5 +14,3 @@ private:
 	void warning(void);
 	void error(void);
 };
-
-typedef std::map<std::string, void(Harl::*)(void)> my_map;
