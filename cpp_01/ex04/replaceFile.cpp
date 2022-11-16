@@ -50,7 +50,7 @@ void replaceFile::old_to_new(int len) {
 }
 
 void replaceFile::new_to_file(char *path) {
-	FILE* fd = std::fopen(path, "w");
+	FILE* fd = std::fopen(std::strcat(path, ".replace"), "w");
 
 	if(!fd) {
 		std::perror("File opening failed");

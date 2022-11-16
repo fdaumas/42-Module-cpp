@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # line test
-# make && cat Makefile > Makefile_test && ./replace Makefile_test "bonus" "0000000" && cat Makefile_test
+# make && cat Makefile > Makefile_test && ./replace Makefile_test "bonus" "0000000" && cat Makefile_test.replace
 
 #___SETUP
 NAME			=	replace
