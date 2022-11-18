@@ -8,11 +8,11 @@ Fixed::Fixed() {
 }
 
 Fixed::Fixed(int int_number) {
-	this->_number = int_number << this->_number_fractional_bits;
+	this->_number = int_number * (1 << this->_number_fractional_bits);
 }
 
 Fixed::Fixed(float float_number) {
-	this->_number = (float_number * (1 << this->_number_fractional_bits));
+	this->_number = roundf(float_number * (1 << this->_number_fractional_bits));
 }
 /**
  * COPY CONSTRUCTOR
