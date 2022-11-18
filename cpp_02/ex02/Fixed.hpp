@@ -9,14 +9,28 @@ public:
 	Fixed(const Fixed &fixed);
 	~Fixed();
 
-	Fixed&operator=(const Fixed &fixed);
+/* Copy Operator */
+	Fixed&operator = (const Fixed &fixed);
 
-	bool operator>(const Fixed &other);
-	bool operator<(const Fixed &other);
-	bool operator<=(const Fixed &other);
-	bool operator>=(const Fixed &other);
-	bool operator==(const Fixed &other);
-	bool operator!=(const Fixed &other);
+/* Comparaisons Operator */
+	bool operator > (const Fixed &other);
+	bool operator < (const Fixed &other);
+	bool operator <= (const Fixed &other);
+	bool operator >= (const Fixed &other);
+	bool operator == (const Fixed &other);
+	bool operator != (const Fixed &other);
+
+/* Arithmetics Operator */
+	float operator + (const Fixed &other);
+	float operator - (const Fixed &other);
+	float operator * (const Fixed &other);
+	float operator / (const Fixed &other);
+
+/* pre|post increment|decrement Operator */
+	float operator ++ ();
+	float operator ++ (int );
+	float operator -- ();
+	float operator -- (int );
 
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
@@ -29,3 +43,4 @@ private:
 };
 
 std::ostream& operator<<(std::ostream& out, const Fixed& fixed);
+std::ostream& operator<(std::ostream& out, const bool boolean);

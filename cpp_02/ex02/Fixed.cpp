@@ -30,14 +30,6 @@ Fixed::~Fixed() {
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed &Fixed::operator=(const Fixed &fixed) {
-	if (this == &fixed)
-		return (*this);
-	std::cout << "Copy assignememt operator called" << std::endl;
-	this->_number = fixed.getRawBits();
-	return (*this);
-}
-
 int Fixed::getRawBits() const {
 	std::cout << "getRawBits function member called" << std::endl;
 	return (_number);
@@ -55,15 +47,38 @@ float Fixed::toFloat() const {
 	return ((float)this->_number / (float)(1 << this->_number_fractional_bits));
 }
 
-std::ostream& operator<<(std::ostream& out, const Fixed& fixed) {
+/* Copy Operator */
+Fixed &Fixed::operator=(const Fixed &fixed) {
+	if (this == &fixed)
+		return (*this);
+	std::cout << "Copy assignememt operator called" << std::endl;
+	this->_number = fixed.getRawBits();
+	return (*this);
+}
+
+/* Comparaisons Operator */
+bool Fixed::operator > (const Fixed &other) {return (toFloat() > other.toFloat());}
+bool Fixed::operator < (const Fixed &other) {return (toFloat() < other.toFloat());}
+bool Fixed::operator <= (const Fixed &other) {return (toFloat() <= other.toFloat());}
+bool Fixed::operator >= (const Fixed &other) {return (toFloat() >= other.toFloat());}
+bool Fixed::operator == (const Fixed &other) {return (toFloat() == other.toFloat());}
+bool Fixed::operator != (const Fixed &other) {return (toFloat() != other.toFloat());}
+
+/* Arithmetics Operator */
+float Fixed::operator + (const Fixed &other) {return (toFloat() + other.toFloat());}
+float Fixed::operator - (const Fixed &other) {return (toFloat() - other.toFloat());}
+float Fixed::operator * (const Fixed &other) {return (toFloat() * other.toFloat());}
+float Fixed::operator / (const Fixed &other) {return (toFloat() / other.toFloat());}
+
+/* pre|post increment|decrement Operator */
+
+/* Operator for Fixed in std::cout */
+std::ostream& operator << (std::ostream& out, const Fixed& fixed) {
 	out << fixed.toFloat();
 	return out;
 }
-
-/* Operator cmp */
-bool Fixed::operator>(const Fixed &other) {return (toFloat() > other.toFloat());}
-bool Fixed::operator<(const Fixed &other) {return (toFloat() < other.toFloat());}
-bool Fixed::operator<=(const Fixed &other) {return (toFloat() <= other.toFloat());}
-bool Fixed::operator>=(const Fixed &other) {return (toFloat() >= other.toFloat());}
-bool Fixed::operator==(const Fixed &other) {return (toFloat() == other.toFloat());}
-bool Fixed::operator!=(const Fixed &other) {return (toFloat() != other.toFloat());}
+/* Operator for boolean verif WARNING this is weird but just for my presentation
+ * and my knowledge */
+std::ostream& operator < (std::ostream& out, const bool boolean) {
+	return (boolean ? (out << "true") : (out << "false"));
+}
