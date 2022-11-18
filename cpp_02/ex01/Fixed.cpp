@@ -12,7 +12,7 @@ Fixed::Fixed(int int_number) {
 
 Fixed::Fixed(float float_number) {
 	std::cout << "Float constructor called" << std::endl;
-	this->_number = (float_number * (1 << this->_number_fractional_bits));
+	this->_number = roundf(float_number * (1 << this->_number_fractional_bits));
 }
 /**
  * COPY CONSTRUCTOR
