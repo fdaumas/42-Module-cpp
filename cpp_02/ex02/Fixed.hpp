@@ -13,12 +13,12 @@ public:
 	Fixed&operator = (const Fixed &fixed);
 
 /* Comparaisons Operator */
-	bool operator > (const Fixed &other);
-	bool operator < (const Fixed &other);
-	bool operator <= (const Fixed &other);
-	bool operator >= (const Fixed &other);
-	bool operator == (const Fixed &other);
-	bool operator != (const Fixed &other);
+	bool operator > (const Fixed &other) const;
+	bool operator < (const Fixed &other) const;
+	bool operator <= (const Fixed &other) const;
+	bool operator >= (const Fixed &other) const;
+	bool operator == (const Fixed &other) const;
+	bool operator != (const Fixed &other) const;
 
 /* Arithmetics Operator */
 	float operator + (const Fixed &other);
@@ -27,15 +27,19 @@ public:
 	float operator / (const Fixed &other);
 
 /* pre|post increment|decrement Operator */
-	float operator ++ ();
-	float operator ++ (int );
-	float operator -- ();
-	float operator -- (int );
+	Fixed operator ++ ();
+	Fixed operator ++ (int);
+	Fixed operator -- ();
+	Fixed operator -- (int);
 
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
 	float toFloat( void ) const;
 	int toInt( void ) const;
+	Fixed& max(Fixed &f1, Fixed &f2);
+	const Fixed& max(const Fixed &f1, const Fixed &f2);
+	Fixed& min(Fixed &f1, Fixed &f2);
+	const Fixed& min(const Fixed &f1, const Fixed &f2);
 
 private:
 	int _number ;
