@@ -12,6 +12,20 @@ ScavTrap::~ScavTrap() {
 	std::cout << "destructor of ScavTrap" << std::endl;
 }
 
+ScavTrap::ScavTrap(const ScavTrap &scavTrap) : ClapTrap(scavTrap) {
+	std::cout << "Copy constructor of ScavTrap called" << std::endl;
+	*this = scavTrap;
+}
+
+ScavTrap &ScavTrap::operator=(const ScavTrap &scavtrap) {
+	std::cout << "Copy assignememt operator of ScavTrap called" << std::endl;
+	if (this == &scavtrap)
+		return (*this);
+	this->_guardGate = scavtrap._guardGate;
+	ClapTrap::operator=(scavtrap);
+	return (*this);
+}
+
 void ScavTrap::attack(const std::string& target) {
 	if (this->getHitPoint() <= 0)
 		return;
