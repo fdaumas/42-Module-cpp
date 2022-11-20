@@ -1,3 +1,6 @@
+#ifndef CLAPTRAP_H_
+# define CLAPTRAP_H_
+
 #include <iostream>
 
 class ClapTrap {
@@ -17,3 +20,5 @@ private:
 	int _energyPoints;
 	int _attackDamage;
 };
+
+#endif

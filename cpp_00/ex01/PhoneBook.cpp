@@ -82,7 +82,7 @@ void PhoneBook::search_contact() {
 	std::cout << "enter the index of your choice : ";
 	if (!std::getline(std::cin, answer))
 		return ;
-	if ((answer == "EXIT" || answer == "exit") && answer.length() == 4)
+	if ((answer == "EXIT" || answer == "exit"))
 		exit(0);
 	if (answer.length() != 1 || answer < "0" || answer > "7") {
 		std::cout << "Bad index" << std::endl;

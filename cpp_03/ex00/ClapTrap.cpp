@@ -12,7 +12,9 @@ ClapTrap::ClapTrap(const ClapTrap &claptrap) {
 	*this = claptrap;
 }
 
-ClapTrap::~ClapTrap() {}
+ClapTrap::~ClapTrap() {
+	std::cout << "destructor of ClapTrap" << std::endl;
+}
 
 /* Copy Operator */
 ClapTrap &ClapTrap::operator = (const ClapTrap &clapTrap) {
