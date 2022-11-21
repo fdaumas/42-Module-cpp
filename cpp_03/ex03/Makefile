@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 #___SETUP
-NAME			=	Repetitive
+NAME			=	DIAMOND
 CC				=	c++
 CSAN			=	-fsanitize=address
 CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)
@@ -20,12 +20,14 @@ RM				=	rm -rf
 #	FILE & PATH
 HEADER			=	ClapTrap.hpp\
 					ScavTrap.hpp\
-					FragTrap.hpp
+					FragTrap.hpp\
+					DiamondTrap.hpp
 
 SRCS			=	main.cpp\
 					ClapTrap.cpp\
 					ScavTrap.cpp\
-					FragTrap.cpp
+					FragTrap.cpp\
+					DiamondTrap.cpp
 
 DIR_OBJS		=	.objs
 LST_OBJS		=	$(SRCS:.cpp=.o)

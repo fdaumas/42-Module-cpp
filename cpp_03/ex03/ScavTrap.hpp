@@ -3,8 +3,9 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap:public ClapTrap {
+class ScavTrap:virtual public ClapTrap {
 public:
+	ScavTrap();
 	ScavTrap(std::string name);
 	ScavTrap(const ScavTrap &scavTrap);
 	~ScavTrap();
@@ -16,7 +17,7 @@ public:
 	void setHitPointScavTrap(int amount);
 	void setEnergypointsScavTrap(int amount);
 	void setAttackDamageScavTrap(int amount);
-private:
+protected:
 	bool _guardGate;
 };
 
