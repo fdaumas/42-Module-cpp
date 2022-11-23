@@ -1,0 +1,61 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fdaumas <fdaumas@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/10/12 00:43:20 by fdaumas           #+#    #+#              #
+#    Updated: 2022/10/18 19:39:51 by fdaumas          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#___SETUP
+NAME			=	Animal
+CC				=	c++
+CSAN			=	-fsanitize=address
+CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)
+RM				=	rm -rf
+
+#	FILE & PATH
+HEADER			=	Animal.hpp\
+					WrongAnimal.hpp\
+					Cat.hpp\
+					WrongCat.hpp\
+					Dog.hpp\
+					Brain.hpp
+
+SRCS			=	main.cpp\
+					Animal.cpp\
+					WrongAnimal.cpp\
+					Cat.cpp\
+					WrongCat.cpp\
+					Dog.cpp\
+					Brain.cpp
+
+DIR_OBJS		=	.objs
+LST_OBJS		=	$(SRCS:.cpp=.o)
+OBJS			=	$(addprefix $(DIR_OBJS)/,$(LST_OBJS))
+
+
+all:				${NAME}
+
+${NAME}:			${OBJS}
+			$(CC) $(CFLAGS) $^ -o $@
+
+$(DIR_OBJS)/%.o:	%.cpp $(HEADER) Makefile $(HEADER) | $(DIR_OBJS)
+			$(CC) $(CFLAGS) -I. -c $< -o $@
+
+$(DIR_OBJS):
+			mkdir -p $(DIR_OBJS)
+
+clean:
+			$(RM) ${DIR_OBJS}
+
+fclean:				clean
+			$(RM) ${NAME}
+
+re:					fclean
+			${name}
+
+.PHONY:		all clean fclean re bonus
