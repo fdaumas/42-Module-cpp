@@ -9,7 +9,10 @@ public:
   Brain(const Brain& brain);
   ~Brain();
   Brain& operator = (const Brain& brain);
-  std::string idea[100];
+  void setIdea();
+  std::string getIdea(unsigned int index) const;
+private:
+  std::string _idea[100];
 };
 
 #endif

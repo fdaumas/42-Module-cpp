@@ -31,19 +31,5 @@ Dog &Dog::operator=(const Dog &dog) {
 
 void Dog::makeSound() const {
 
-  std::cout << "Bark Bark" << std::endl;
-}
-
-std::string Dog::getIdea(unsigned int index) const {
-
-  if (index > 99)
-    return (NULL);
-  return (_brain->idea[index]);
-}
-
-void Dog::setIdea(unsigned int index, std::string idea) {
-
-  if (index > 99)
-    return ;
-  _brain->idea[index] = idea;
+  std::cout << "Bark Bark i want " << _brain->getIdea(0) << std::endl;
 }

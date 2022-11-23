@@ -2,10 +2,11 @@
 /* Copyright 2022 The fdaumas Athors*/
 #include "Cat.hpp"
 
-Cat::Cat() : Animal(), _brain(new Brain) {
+Cat::Cat() : Animal() {
 
   std::cout << "Default constructor of Cat" << std::endl;
   this->type = "Cat";
+  this->_brain = new Brain();
 }
 
 Cat::Cat(const Cat &cat) {
@@ -32,19 +33,5 @@ Cat &Cat::operator=(const Cat &cat) {
 
 void Cat::makeSound() const{
 
-  std::cout << "UwU" << std::endl;
-}
-
-std::string Cat::getIdea(unsigned int index) const {
-
-  if (index > 99)
-    return (NULL);
-  return (_brain->idea[index]);
-}
-
-void Cat::setIdea(unsigned int index, std::string idea) {
-
-  if (index > 99)
-    return ;
-  _brain->idea[index] = idea;
+  std::cout << "UwU i want " << _brain->getIdea(0) << std::endl;
 }
