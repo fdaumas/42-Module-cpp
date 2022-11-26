@@ -21,11 +21,19 @@ Form& Form::operator = (const Form &form) {
 }
 
 bool Form::getSigned() const {
-	return (_signed);
+	return (this->_signed);
 }
 
 std::string Form::getName() const {
-	return (_name);
+	return (this->_name);
+}
+
+int Form::getGradeRequiredSign() const {
+	return (this->_gradeSigned);
+}
+
+int Form::getGradeRequiredExecute() const {
+	return (this->_gradeExecute);
 }
 
 void Form::beSigned(const Bureaucrat& bureaucrat) {
@@ -64,9 +72,17 @@ const char* Form::GradeTooLowException::what() const throw() {
 
 std::ostream& operator << (std::ostream& out, Form const& form) {
 	if (form.getSigned() == true) {
-		out << form.getName() << " is signed";
+		out << "----" << std::endl
+		<< form.getName() << " is signed" << std::endl
+		<< "grade for sign : " << form.getGradeRequiredSign() << std::endl
+		<< "grade for execute : " << form.getGradeRequiredExecute()
+		<< std::endl << "----" ;
 	}
 	else
-		out << form.getName() << " is not signed";
+		out << "----" << std::endl
+		<< form.getName() << " is not signed" << std::endl
+		<< "grade for sign : " << form.getGradeRequiredSign() << std::endl
+		<< "grade for execute : " << form.getGradeRequiredExecute()
+		<< std::endl << "----";
 	return (out);
 }

@@ -16,6 +16,8 @@ class Form {
 		void verifCanSigned(const Bureaucrat& bureaucrat);
 		void beSigned(const Bureaucrat& bureaucrat);
 		bool getSigned() const;
+		int getGradeRequiredSign() const ;
+		int getGradeRequiredExecute() const ;
 		std::string getName() const;
 		class GradeTooHighException : public std::exception {
 			public:
