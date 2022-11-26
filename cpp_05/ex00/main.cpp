@@ -1,41 +1,26 @@
 #include "Bureaucrat.hpp"
 
-int main() {
+int main(int ac, char* av[]) {
+	if (ac != 2) {
+		std::cerr << "bad number argument" << std::endl;
+		return (1);
+	}
 	Bureaucrat* test;
 	std::cout << "----TRY----" << std::endl;
 	try {
-		test = new Bureaucrat("michel", 100);
-		std::cout << *test << std::endl;
-		delete test;
+		test = new Bureaucrat("michel", std::atoi(av[1]));
 	}
-	catch (const char* exception) {
-		std::cout << exception << std::endl;
-		return (0);
+	catch (const std::exception &exception) {
+		std::cerr << exception.what() << std::endl;
+		return (2);
 	}
-	std::cout << "----TRY----" << std::endl;
-	test = new Bureaucrat("michel");
-	std::cout << *test << std::endl;
-	try {
-		test->decrementGrade();
-	}
-	catch (const char* exception) {
-		std::cout << exception << std::endl;
-		test->incrementGrade();
-	}
-	std::cout << *test << std::endl;
-	delete test;
-	std::cout << "----TRY----" << std::endl;
-	test = new Bureaucrat("michel", 1);
-	std::cout << *test << std::endl;
-	try {
-		test->incrementGrade();
-	}
-	catch (const char* exception) {
-		std::cout << exception << std::endl;
-		test->decrementGrade();
-	}
-	std::cout << *test << std::endl;
-	std::cout << "----TRY----" << std::endl;
+	std::cout << "after initialisation : " << *test << std::endl;
+	test->incrementGrade();
+	std::cout << "after increment : " << *test << std::endl;
+	test->decrementGrade();
+	std::cout << "after decrement : " << *test << std::endl;
+	test->decrementGrade();
+	std::cout << "after decrement : " << *test << std::endl;
 	delete test;
 	return (0);
 }

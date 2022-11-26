@@ -10,13 +10,20 @@ class Bureaucrat {
 		Bureaucrat(std::string name);
 		Bureaucrat(const Bureaucrat &bureaucrat);
 		~Bureaucrat();
-		void		verifGrade() ;
+		void		verifGrade();
 		std::string	getName( void ) const;
 		int			getGrade( void ) const;
 		void		incrementGrade( void );
 		void		decrementGrade( void );
 		Bureaucrat &operator = (const Bureaucrat &bureaucrat);
-
+		class GradeTooHighException : public std::exception {
+			public:
+				virtual const char*    what()const throw();
+		};
+		class GradeTooLowException : public std::exception {
+			public:
+				virtual const char*    what()const throw();
+		};
 	private:
 		std::string	_name;
 		int			_grade;

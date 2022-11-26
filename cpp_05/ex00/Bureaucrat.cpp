@@ -12,7 +12,8 @@ Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat) {
 	*this = bureaucrat;
 }
 
-Bureaucrat::~Bureaucrat() {}
+Bureaucrat::~Bureaucrat() {
+}
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat) {
 	if (this == &bureaucrat)
@@ -24,10 +25,10 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat) {
 
 void Bureaucrat::verifGrade() {
 	if (this->_grade < 1) {
-		throw ("Grade cannot exceed 1");
+		throw (Bureaucrat::GradeTooHighException());
 	}
 	if (this->_grade > 150) {
-		throw ("Grade cannot be below 150");
+		throw (Bureaucrat::GradeTooLowException());
 	}
 }
 
@@ -41,16 +42,36 @@ int Bureaucrat::getGrade() const {
 
 void Bureaucrat::incrementGrade() {
 	this->_grade--;
-	verifGrade();
+	try {
+		verifGrade();
+	}
+	catch (const std::exception& exception) {
+		std::cerr << exception.what() << std::endl;
+		this->_grade++;
+	}
 }
 
 void Bureaucrat::decrementGrade() {
 	this->_grade++;
-	verifGrade();
+	try {
+		verifGrade();
+	}
+	catch (const std::exception& exception) {
+		std::cerr << exception.what() << std::endl;
+	this->_grade--;
+	}
 }
 
 std::ostream& operator << (std::ostream& out, const Bureaucrat bureaucrat) {
 	out << bureaucrat.getName() << ", bureaucrat grade " <<
 	bureaucrat.getGrade() << ".";
 	return (out);
+}
+
+const char *Bureaucrat::GradeTooHighException::what() const throw() {
+	return ("Grade cannot exceed 1");
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw() {
+	return ("Grade cannot be below 150");
 }
