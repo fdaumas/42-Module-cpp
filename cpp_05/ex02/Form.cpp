@@ -3,7 +3,6 @@
 Form::Form(const std::string name, const int gradesigned, const int gradeexecute)
 : _name(name), _signed(false), _gradeSigned(gradesigned), _gradeExecute(gradeexecute)
 			{
-	verifConstructor();
 }
 
 Form::Form(const Form &form) : _name(form._name), _gradeSigned(form._gradeSigned)
@@ -22,6 +21,10 @@ Form& Form::operator = (const Form &form) {
 
 bool Form::getSigned() const {
 	return (this->_signed);
+}
+
+void Form::setsigned(bool signe) {
+	this->_signed = signe;
 }
 
 std::string Form::getName() const {
@@ -55,6 +58,12 @@ void Form::verifCanSigned(const Bureaucrat& bureaucrat) {
 		throw (Form::GradeTooLowException());
 }
 
+bool Form::verifCanExecute(const Bureaucrat &bureaucrat) const {
+	if (bureaucrat.getGrade() > _gradeExecute)
+		return (false);
+	return(true);
+}
+
 void Form::verifConstructor() {
 	if (this->_gradeSigned > 150 || this->_gradeExecute > 150)
 		throw (Form::GradeTooLowException());
@@ -70,8 +79,12 @@ const char* Form::GradeTooLowException::what() const throw() {
 	return ("Grade is too low");
 }
 
+const char* Form::FormNotSigned::what() const throw() {
+	return ("Form not signed");
+}
+
 std::ostream& operator << (std::ostream& out, Form const& form) {
-	if (form.getSigned() == true) {
+	if (form.getSigned()) {
 		out << "----" << std::endl
 		<< form.getName() << " is signed" << std::endl
 		<< "grade for sign : " << form.getGradeRequiredSign() << std::endl

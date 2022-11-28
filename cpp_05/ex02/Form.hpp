@@ -10,20 +10,27 @@ class Form {
 		Form(const std::string name, const int gradesigned
 			, const int gradeexecute);
 		Form(const Form &form);
-		~Form();
+		virtual ~Form();
 		Form& operator = (const Form& form);
 		void verifConstructor();
 		void verifCanSigned(const Bureaucrat& bureaucrat);
+		bool verifCanExecute(const Bureaucrat& bureaucrat) const;
 		void beSigned(const Bureaucrat& bureaucrat);
 		bool getSigned() const;
+		void setsigned(bool signe);
 		int getGradeRequiredSign() const ;
 		int getGradeRequiredExecute() const ;
+		virtual void execute(Bureaucrat const &executor) const = 0;
 		std::string getName() const;
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char*	what() const throw();
 		};
 		class GradeTooLowException : public std::exception {
+			public:
+				virtual const char*	what() const throw();
+		};
+		class FormNotSigned : public std::exception {
 			public:
 				virtual const char*	what() const throw();
 		};

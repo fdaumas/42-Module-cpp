@@ -19,10 +19,16 @@ RM				=	rm -rf
 
 #	FILE & PATH
 HEADER			=	Bureaucrat.hpp\
-					Form.hpp
+					Form.hpp\
+					RobotomyRequestForm.hpp\
+					ShrubberyCreationForm.hpp\
+					PresidentialPardonForm.hpp
 
 SRCS			=	Bureaucrat.cpp\
 					Form.cpp\
+					PresidentialPardonForm.cpp\
+					RobotomyRequestForm.cpp\
+					ShrubberyCreationForm.cpp\
 					main.cpp
 
 DIR_OBJS		=	.objs

@@ -1,11 +1,14 @@
-#include "Form.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
 
 int main(int ac, char* av[]) {
-	if (ac != 3) {
+	if (ac != 2) {
 		std::cerr << "bad number argument" << std::endl;
 		return (1);
 	}
+	std::srand(std::time(nullptr));
 	Bureaucrat* test;
 	std::cout << "----TRY----" << std::endl;
 	try {
@@ -16,17 +19,15 @@ int main(int ac, char* av[]) {
 		return (2);
 	}
 	std::cout << *test << std::endl;
-	Form* form;
-	try {
-		form = new Form("SUPER", std::atoi(av[2]), 100);
-	}
-	catch (std::exception& exception) {
-		std::cerr << exception.what() << std::endl;
-		delete test;
-		return (3);
-	}
+	Form* form = new ShrubberyCreationForm("michel");
 	test->signForm(*form);
 	std::cout << *form << std::endl;
+	try {
+		form->execute(*test);
+	}
+	catch (const std::exception &exception) {
+		std::cerr << exception.what() << std::endl;
+	}
 	delete test;
 	delete form;
 	return (0);
