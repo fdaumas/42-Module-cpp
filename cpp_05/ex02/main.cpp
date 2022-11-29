@@ -22,12 +22,7 @@ int main(int ac, char* av[]) {
 	Form* form = new ShrubberyCreationForm("michel");
 	test->signForm(*form);
 	std::cout << *form << std::endl;
-	try {
-		form->execute(*test);
-	}
-	catch (const std::exception &exception) {
-		std::cerr << exception.what() << std::endl;
-	}
+	test->executeForm(*form);
 	delete test;
 	delete form;
 	return (0);

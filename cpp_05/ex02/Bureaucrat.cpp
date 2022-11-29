@@ -79,3 +79,12 @@ const char *Bureaucrat::GradeTooHighException::what() const throw() {
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
 	return ("Grade cannot be below 150");
 }
+
+void		Bureaucrat::executeForm(Form const &form) {
+	try {
+		form.execute(*this);
+	}
+	catch (const std::exception &exception) {
+		std::cerr << exception.what() << std::endl;
+	}
+}

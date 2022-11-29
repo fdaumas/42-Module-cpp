@@ -1,7 +1,7 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& string) :
-		Form("Presidential pardon form", 145, 137), _target(string)
+		Form("Shrubberry Creation form", 145, 137), _target(string)
 {}
 
 ShrubberyCreationForm::ShrubberyCreationForm

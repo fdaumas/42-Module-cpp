@@ -51,8 +51,9 @@ clean:
 			$(RM) ${DIR_OBJS}
 
 fclean:				clean
-			$(RM) ${NAME}
+			$(RM) ${NAME} *_shrubbery
 
-re:					fclean all
+re:					fclean
+			make
 
 .PHONY:		all clean fclean re bonus
