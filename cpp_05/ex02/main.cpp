@@ -23,6 +23,16 @@ int main(int ac, char* av[]) {
 	test->signForm(*form);
 	std::cout << *form << std::endl;
 	test->executeForm(*form);
+	delete form;
+	form = new RobotomyRequestForm("michel");
+	test->signForm(*form);
+	std::cout << *form << std::endl;
+	test->executeForm(*form);
+	delete form;
+	form = new PresidentialPardonForm("michel");
+	test->signForm(*form);
+	std::cout << *form << std::endl;
+	test->executeForm(*form);
 	delete test;
 	delete form;
 	return (0);
