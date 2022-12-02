@@ -1,15 +1,17 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string name, int grade) :
+Bureaucrat::Bureaucrat(const std::string& name, int grade) :
 _name(name), _grade(grade) {
 	verifGrade();
 }
 
-Bureaucrat::Bureaucrat(std::string name) :
+Bureaucrat::Bureaucrat(const std::string& name) :
 _name(name), _grade(150) {}
 
-Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat) {
-	*this = bureaucrat;
+Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat) :
+	_name(bureaucrat.getName()),
+	_grade(bureaucrat.getGrade())
+{
 }
 
 Bureaucrat::~Bureaucrat() {
@@ -18,7 +20,6 @@ Bureaucrat::~Bureaucrat() {
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat) {
 	if (this == &bureaucrat)
 		return (*this);
-	this->_name = bureaucrat.getName();
 	this->_grade = bureaucrat.getGrade();
 	return (*this);
 }
@@ -32,7 +33,7 @@ void Bureaucrat::verifGrade() {
 	}
 }
 
-std::string Bureaucrat::getName() const {
+const std::string& Bureaucrat::getName() const {
 	return (_name);
 }
 

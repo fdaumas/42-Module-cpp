@@ -9,8 +9,8 @@ class Form;
 
 class Bureaucrat {
 	public:
-		Bureaucrat(const std::string name, int grade);
-		Bureaucrat(std::string name);
+		Bureaucrat(const std::string& name, int grade);
+		Bureaucrat(const std::string& name);
 		Bureaucrat(const Bureaucrat &bureaucrat);
 		~Bureaucrat();
 		void		verifGrade();
@@ -29,8 +29,8 @@ class Bureaucrat {
 				virtual const char*	what()const throw();
 		};
 	private:
-		std::string	_name;
-		int			_grade;
+		const std::string&	_name;
+		int					_grade;
 };
 
 std::ostream& operator << (std::ostream& out, Bureaucrat const& bureaucrat);
