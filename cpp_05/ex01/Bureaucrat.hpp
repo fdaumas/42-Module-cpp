@@ -14,7 +14,7 @@ class Bureaucrat {
 		Bureaucrat(const Bureaucrat &bureaucrat);
 		~Bureaucrat();
 		void		verifGrade();
-		std::string	getName( void ) const;
+		const std::string&	getName( void ) const;
 		int			getGrade( void ) const;
 		void		incrementGrade( void );
 		void		decrementGrade( void );

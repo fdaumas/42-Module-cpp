@@ -11,7 +11,9 @@ class Form {
 			, const int gradeexecute);
 		Form(const Form &form);
 		virtual ~Form();
+
 		Form& operator = (const Form& form);
+
 		void verifConstructor();
 		void verifCanSigned(const Bureaucrat& bureaucrat);
 		bool verifCanExecute(const Bureaucrat& bureaucrat) const;
