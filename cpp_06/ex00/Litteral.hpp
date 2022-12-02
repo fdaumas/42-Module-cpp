@@ -13,13 +13,11 @@ class Litteral {
 		bool	isNan() const;
 		bool	isInf() const;
 		bool	isChar() const;
-		bool	isInt() const;
-		bool	isFloat() const;
-		bool	isDouble() const;
 
 		void print() const;
 		void printInf() const;
 		void printNan() const;
+		void otherPrint() const;
 
 		class badValue : public std::exception {
 			public:
@@ -27,6 +25,9 @@ class Litteral {
 		};
 
 	private:
+		bool _isInt;
+		bool _isFloat;
+		bool _isDouble;
 		const std::string& _value;
 };
 
