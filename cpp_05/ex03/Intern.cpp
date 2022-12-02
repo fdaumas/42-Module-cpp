@@ -13,34 +13,6 @@ Intern& Intern::operator=(const Intern &intern) {
 	return (*this);
 }
 
-Form* Intern::createForm(const std::string &name, const std::string &target) {
-	std::string nameform[3] = {"Presidential pardon",
-							   "Robotomy request",
-							   "Shrubbery creation"};
-	int index_form = 0;
-	while (nameform[index_form] != name && index_form < 3)
-		index_form++;
-	Form* form;
-	switch (index_form) {
-		case 0:
-			form = new PresidentialPardonForm(target);
-			std::cout << "Intern create " << name << std::endl;
-			break;
-		case 1:
-			form = new PresidentialPardonForm(target);
-			std::cout << "Intern create " << name << std::endl;
-			break;
-		case 2:
-			form = new PresidentialPardonForm(target);
-			std::cout << "Intern create " << name << std::endl;
-			break;
-		default:
-			std::cout << "Bad name Intern cannot create this shit" << std::endl;
-			throw (Intern::InterCannotCreateForm());
-	}
-	return (form);
-}
-
 Form* Intern::makeForm(const std::string &name, const std::string &target) {
 	std::string nameform[3] = {"Presidential pardon",
 							   "Robotomy request",
@@ -55,15 +27,14 @@ Form* Intern::makeForm(const std::string &name, const std::string &target) {
 			std::cout << "Intern create " << name << std::endl;
 			break;
 		case 1:
-			form = new PresidentialPardonForm(target);
+			form = new RobotomyRequestForm(target);
 			std::cout << "Intern create " << name << std::endl;
 			break;
 		case 2:
-			form = new PresidentialPardonForm(target);
+			form = new ShrubberyCreationForm(target);
 			std::cout << "Intern create " << name << std::endl;
 			break;
 		default:
-			std::cout << "Bad name Intern cannot create this shit" << std::endl;
 			throw (Intern::InterCannotCreateForm());
 	}
 	return (form);

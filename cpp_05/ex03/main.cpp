@@ -4,22 +4,8 @@
 #include "Bureaucrat.hpp"
 #include "Intern.hpp"
 
-int main(int ac, char* av[]) {
-	if (ac != 2) {
-		std::cerr << "bad number argument" << std::endl;
-		return (1);
-	}
+int main() {
 	std::srand(std::time(nullptr));
-	Bureaucrat* test;
-	std::cout << "----TRY----" << std::endl;
-	try {
-		test = new Bureaucrat("michel", std::atoi(av[1]));
-	}
-	catch (const std::exception &exception) {
-		std::cerr << exception.what() << std::endl;
-		return (2);
-	}
-	std::cout << *test << std::endl;
 	Intern someRandomIntern;
 	Form* form;
 	try {
@@ -31,7 +17,7 @@ int main(int ac, char* av[]) {
 		std::cerr << exception.what() << std::endl;
 	}
 	try {
-		form = someRandomIntern.makeForm("Presidential Pardon", "michel");
+		form = someRandomIntern.makeForm("Presidential pardon", "michel");
 		std::cout << *form << std::endl;
 		delete form;
 	}
@@ -54,6 +40,5 @@ int main(int ac, char* av[]) {
 	catch (std::exception& exception) {
 		std::cerr << exception.what() << std::endl;
 	}
-	delete test;
 	return (0);
 }
