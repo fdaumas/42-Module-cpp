@@ -1,6 +1,6 @@
-#include "Litteral.hpp"
+#include "Literal.hpp"
 
-Litteral::Litteral(const std::string& value) :
+Literal::Literal(const std::string& value) :
 	_isInt(true),
 	_isFloat(false),
 	_isDouble(false),
@@ -11,6 +11,14 @@ Litteral::Litteral(const std::string& value) :
 	int index = 0, nb_point = 0;
 	if (value[index] == '-')
 		index++;
+	if (std::atof(_value.c_str()) > 2147483647) {
+		std::cerr << "value > INT MAX " << std::endl;
+		throw (Literal::badValue());
+	}
+	if (std::atof(_value.c_str()) < -2147483648) {
+		std::cerr << "value < INT MIN " << std::endl;
+		throw (Literal::badValue());
+	}
 	while(value[index])
 	{
 		if (value[index] >= '0' && value[index] <= '9')
@@ -29,43 +37,38 @@ Litteral::Litteral(const std::string& value) :
 			this->_isDouble = true;
 		}
 		else {
-			throw (Litteral::badValue());
+			throw (Literal::badValue());
 		}
 	}
 }
 
-Litteral &Litteral::operator=(const Litteral& copy) {
+Literal &Literal::operator=(const Literal& copy) {
 	if (this == &copy)
 		return (*this);
 	return (*this);
 }
 
-Litteral::Litteral(const Litteral &copy) : _value(copy._value) {}
+Literal::Literal(const Literal &copy) : _value(copy._value) {}
 
-Litteral::~Litteral() {}
+Literal::~Literal() {}
 
-bool Litteral::isNan() const {
+bool Literal::isNan() const {
 	return (_value == "nan" || _value == "nanf");
 }
 
-bool Litteral::isInf() const {
+bool Literal::isInf() const {
 	return (_value == "-inf" || _value == "-inff" || _value == "+inf"
 		|| _value == "+inff" || _value == "inf" || _value == "inff");
 }
 
-bool Litteral::isChar() const {
-	try {
-		int value = std::atoi(this->_value.c_str());
-		if (value > 31 && value < 127)
-			return (true);
-	}
-	catch (...) {
-		return (false);
-	}
+bool Literal::isChar() const {
+	int value = std::atoi(this->_value.c_str());
+	if (value > 31 && value < 127)
+		return (true);
 	return (false);
 }
 
-void Litteral::print() const {
+void Literal::print() const {
 	if (isNan())
 		return (printNan());
 	if (isChar()) {
@@ -81,14 +84,14 @@ void Litteral::print() const {
 	otherPrint();
 }
 
-void Litteral::printNan() const {
+void Literal::printNan() const {
 	std::cout << "char: impossible" << std::endl
 		<< "int: impossible" << std::endl
 		<< "float: nanf" << std::endl
 		<< "double: nan" << std::endl;
 }
 
-void Litteral::printInf() const {
+void Literal::printInf() const {
 	if (_value == "inf" || _value == "+inf") {
 		std::cout << "int: impossible" << std::endl
 			<< "float: inff" << std::endl
@@ -101,21 +104,28 @@ void Litteral::printInf() const {
 	}
 }
 
-void Litteral::otherPrint() const {
+void Literal::otherPrint() const {
+	std::cout << std::fixed << std::setprecision(1);
 	if (_isInt) {
 		int integer = std::atoi(this->_value.c_str());
 		std::cout << "int: " << static_cast<int>(integer) << std::endl
-			<< "float: " << static_cast<float>(integer) << ".0f" << std::endl
-			<< "double: " << static_cast<double>(integer) << ".0" << std::endl;
+			<< "float: " << static_cast<float>(integer) << "f" << std::endl
+			<< "double: " << static_cast<double>(integer) << std::endl;
 	}
 	else if (_isFloat) {
-		float floater = std::atof(this->_value.c_str());
+		float floater = static_cast<float>(std::atof(this->_value.c_str()));
 		std::cout << "int: " << static_cast<int>(floater) << std::endl
-			<< "float: " << static_cast<float>(floater) << "f" << std::endl;// TODO dosen't print .0 with x.0f
-		std::cout << "double: " << static_cast<double>(floater) << std::endl; // TODO dosen't print .0 with x.0f
+			<< "float: " << static_cast<float>(floater) << "f" << std::endl
+			<< "double: " << static_cast<double>(floater) << std::endl;
+	}
+	else if (_isDouble) {
+		double nb_double = std::atof(this->_value.c_str());
+		std::cout << "int: " << static_cast<int>(nb_double) << std::endl
+			<< "float: " << static_cast<float>(nb_double) << "f" << std::endl
+			<< "double: " << static_cast<double>(nb_double) << std::endl;
 	}
 }
 
-const char* Litteral::badValue::what() const throw() {
+const char* Literal::badValue::what() const throw() {
 	return ("Bad Value");
 }

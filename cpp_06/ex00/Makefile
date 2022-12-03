@@ -11,16 +11,16 @@
 # **************************************************************************** #
 
 #___SETUP
-NAME			=	Litteral
+NAME			=	Literal
 CC				=	c++
 CSAN			=	-fsanitize=address
 CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)
 RM				=	rm -rf
 
 #	FILE & PATH
-HEADER			=	Litteral.hpp
+HEADER			=	Literal.hpp
 
-SRCS			=	Litteral.cpp\
+SRCS			=	Literal.cpp\
 					main.cpp
 
 DIR_OBJS		=	.objs

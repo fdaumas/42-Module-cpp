@@ -1,14 +1,15 @@
-#ifndef _LITTERAL_H_
-# define _LITTERAL_H_
+#ifndef _LITERAL_H_
+# define _LITERAL_H_
 
 #include <iostream>
+#include <iomanip>
 
-class Litteral {
+class Literal {
 	public:
-		Litteral(const std::string& value);
-		Litteral(const Litteral& copy);
-		Litteral& operator = (const Litteral& copy);
-		~Litteral();
+		Literal(const std::string& value);
+		Literal(const Literal& copy);
+		Literal& operator = (const Literal& copy);
+		~Literal();
 
 		bool	isNan() const;
 		bool	isInf() const;
