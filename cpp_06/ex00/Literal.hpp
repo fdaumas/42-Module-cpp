@@ -14,6 +14,7 @@ class Literal {
 		bool	isNan() const;
 		bool	isInf() const;
 		bool	isChar() const;
+		bool	isValidInt() const;
 
 		void print() const;
 		void printInf() const;

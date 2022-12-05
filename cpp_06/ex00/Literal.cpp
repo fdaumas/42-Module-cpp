@@ -11,14 +11,14 @@ Literal::Literal(const std::string& value) :
 	int index = 0, nb_point = 0;
 	if (value[index] == '-')
 		index++;
-	if (std::atof(_value.c_str()) > 2147483647) {
-		std::cerr << "value > INT MAX " << std::endl;
-		throw (Literal::badValue());
-	}
-	if (std::atof(_value.c_str()) < -2147483648) {
-		std::cerr << "value < INT MIN " << std::endl;
-		throw (Literal::badValue());
-	}
+//	if (std::atof(_value.c_str()) > 2147483647) {
+//		std::cerr << "value > INT MAX " << std::endl;
+//		throw (Literal::badValue());
+//	}
+//	if (std::atof(_value.c_str()) < -2147483648) {
+//		std::cerr << "value < INT MIN " << std::endl;
+//		throw (Literal::badValue());
+//	}
 	while(value[index])
 	{
 		if (value[index] >= '0' && value[index] <= '9')
@@ -72,7 +72,7 @@ void Literal::print() const {
 	if (isNan())
 		return (printNan());
 	if (isChar()) {
-		int value_char = stoi(_value);
+		int value_char = atoi(_value.c_str());
 		std::cout << "char: '"
 			<< static_cast<char>(value_char) << "'" << std::endl;
 	}
@@ -105,25 +105,45 @@ void Literal::printInf() const {
 }
 
 void Literal::otherPrint() const {
-	std::cout << std::fixed << std::setprecision(1);
 	if (_isInt) {
 		int integer = std::atoi(this->_value.c_str());
-		std::cout << "int: " << static_cast<int>(integer) << std::endl
-			<< "float: " << static_cast<float>(integer) << "f" << std::endl
-			<< "double: " << static_cast<double>(integer) << std::endl;
+		if (isValidInt())
+			std::cout << "int: " << static_cast<int>(integer)
+				<< "\nfloat: " << static_cast<float>(integer) << ".0f\n"
+				<< "double: " << static_cast<double>(integer) << ".0" << std::endl;
+		else
+			std::cout << "int: Impossible\nfloat: " << static_cast<float>(integer) << ".0f\n"
+				  << "double: " << static_cast<double>(integer) << ".0" << std::endl;
 	}
 	else if (_isFloat) {
-		float floater = static_cast<float>(std::atof(this->_value.c_str()));
-		std::cout << "int: " << static_cast<int>(floater) << std::endl
-			<< "float: " << static_cast<float>(floater) << "f" << std::endl
-			<< "double: " << static_cast<double>(floater) << std::endl;
+		std::cout << std::setprecision(1);
+		float floater = (std::stof(this->_value.c_str()));
+		if (isValidInt())
+			std::cout << "int: " << static_cast<int>(floater)
+				<< "\nfloat: " << static_cast<float>(floater) << "f\n"
+				<< "double: " << static_cast<double>(floater) << std::endl;
+		else
+			std::cout << "int: Impossible\nfloat: " << static_cast<float>(floater) << "f\n"
+				  << "double: " << static_cast<double>(floater) << std::endl;
 	}
 	else if (_isDouble) {
+		std::cout << std::setprecision(1);
 		double nb_double = std::atof(this->_value.c_str());
-		std::cout << "int: " << static_cast<int>(nb_double) << std::endl
-			<< "float: " << static_cast<float>(nb_double) << "f" << std::endl
-			<< "double: " << static_cast<double>(nb_double) << std::endl;
+		if (isValidInt())
+			std::cout << "int: " << static_cast<int>(nb_double)
+				<< "\nfloat: " << static_cast<float>(nb_double) << "f\n"
+				<< "double: " << static_cast<double>(nb_double) << std::endl;
+		else
+			std::cout << "int: Impossible\nfloat: " << static_cast<float>(nb_double) << "f\n"
+				  << "double: " << static_cast<double>(nb_double) << std::endl;
 	}
+}
+
+bool Literal::isValidInt() const {
+	if (std::atof(_value.c_str()) > 2147483647 || std::atof(_value.c_str()) < -2147483648) {
+		return (false);
+	}
+	return (true);
 }
 
 const char* Literal::badValue::what() const throw() {
