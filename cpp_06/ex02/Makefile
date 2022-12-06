@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 #___SETUP
-NAME			=
+NAME			=	Identify
 CC				=	c++
 CSAN			=	-fsanitize=address
 CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)
@@ -23,7 +23,8 @@ HEADER			=	Base.hpp\
 					B.hpp\
 					C.hpp
 
-SRCS			=	main.cpp
+SRCS			=	main.cpp\
+					identify.cpp
 
 DIR_OBJS		=	.objs
 LST_OBJS		=	$(SRCS:.cpp=.o)
