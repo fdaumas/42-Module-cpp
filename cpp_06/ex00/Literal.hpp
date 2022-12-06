@@ -15,6 +15,7 @@ class Literal {
 		bool	isInf() const;
 		bool	isChar() const;
 		bool	isValidInt() const;
+		int 	findPrecision() const;
 
 		void print() const;
 		void printInf() const;

@@ -116,31 +116,42 @@ void Literal::otherPrint() const {
 				  << "double: " << static_cast<double>(integer) << ".0" << std::endl;
 	}
 	else if (_isFloat) {
-		std::cout << std::setprecision(1);
-		float floater = (std::stof(this->_value.c_str()));
+		std::cout << std::fixed << std::setprecision(findPrecision() - 2);
+		float floater = std::atof(this->_value.c_str());
 		if (isValidInt())
 			std::cout << "int: " << static_cast<int>(floater)
 				<< "\nfloat: " << static_cast<float>(floater) << "f\n"
 				<< "double: " << static_cast<double>(floater) << std::endl;
 		else
-			std::cout << "int: Impossible\nfloat: " << static_cast<float>(floater) << "f\n"
-				  << "double: " << static_cast<double>(floater) << std::endl;
+			std::cout << "int: Impossible\nfloat: "
+				<< static_cast<float>(floater) << "f\n"
+				<< "double: " << static_cast<double>(floater) << std::endl;
 	}
 	else if (_isDouble) {
-		std::cout << std::setprecision(1);
+		std::cout << std::fixed << std::setprecision(findPrecision() - 1);
 		double nb_double = std::atof(this->_value.c_str());
 		if (isValidInt())
 			std::cout << "int: " << static_cast<int>(nb_double)
-				<< "\nfloat: " << static_cast<float>(nb_double) << "f\n"
+				<< "\nfloat: "  << static_cast<float>(nb_double) << "f\n"
 				<< "double: " << static_cast<double>(nb_double) << std::endl;
 		else
-			std::cout << "int: Impossible\nfloat: " << static_cast<float>(nb_double) << "f\n"
-				  << "double: " << static_cast<double>(nb_double) << std::endl;
+			std::cout << "int: Impossible\nfloat: "
+				<< static_cast<float>(nb_double) << "f\n"
+				<< "double: " << static_cast<double>(nb_double) << std::endl;
 	}
 }
 
+int Literal::findPrecision() const {
+	int index_str = 0, length_after_point = 0;
+	while (_value[index_str] != '.')
+		index_str++;
+	while(_value[index_str + length_after_point])
+		length_after_point++;
+	return length_after_point;
+}
+
 bool Literal::isValidInt() const {
-	if (std::atof(_value.c_str()) > 2147483647 || std::atof(_value.c_str()) < -2147483648) {
+	if (std::atof(_value.c_str()) >= 2147483648 || std::atof(_value.c_str()) <= -2147483649) {
 		return (false);
 	}
 	return (true);
