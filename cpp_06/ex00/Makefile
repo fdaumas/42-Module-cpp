@@ -11,9 +11,9 @@
 # **************************************************************************** #
 
 #___SETUP
-NAME			=	Literal
+NAME			=	convert
 CC				=	c++
-CSAN			=	-fsanitize=address
+CSAN			=	-fsanitize=address -g3
 CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)
 RM				=	rm -rf
 

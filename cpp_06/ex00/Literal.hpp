@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <float.h>
 
 class Literal {
 	public:
@@ -20,6 +21,9 @@ class Literal {
 		void print() const;
 		void printInf() const;
 		void printNan() const;
+		void printInt() const;
+		void printFloat() const;
+		void printDouble() const;
 		void otherPrint() const;
 
 		class badValue : public std::exception {
@@ -31,7 +35,7 @@ class Literal {
 		bool _isInt;
 		bool _isFloat;
 		bool _isDouble;
-		const std::string& _value;
+		const std::string _value;
 };
 
 #endif
