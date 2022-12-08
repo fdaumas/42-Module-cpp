@@ -1,11 +1,5 @@
 #include "whatever.hpp"
 
-//void swap(T& a, T& b) {
-//}
-//T const & min(T const & a, T const & b) {
-//	return (b >= a ? b : a);
-//}
-
 int main( void ) {
 	int a = 2;
 	int b = 3;
