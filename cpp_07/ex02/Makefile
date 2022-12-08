@@ -11,16 +11,16 @@
 # **************************************************************************** #
 
 #___SETUP
-NAME			=
+NAME			=	array
 CC				=	c++
-CSAN			=	-fsanitize=address
-CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)
+CSAN			=	-fsanitize=address -g3
+CFLAGS			=	-Wall -Wextra -Werror -std=c++98 $(CSAN)
 RM				=	rm -rf
 
 #	FILE & PATH
-HEADER			=
+HEADER			=	Array.hpp
 
-SRCS			=
+SRCS			=	main.cpp
 
 DIR_OBJS		=	.objs
 LST_OBJS		=	$(SRCS:.cpp=.o)
