@@ -16,7 +16,6 @@ class Array {
 			for (unsigned int i = 0; i < _size; i++)
 				_array[i] = cp._array[i];
 		}
-
 		Array & operator=(const Array & cp) {
 			if (this != &cp) {
 				_size = cp._size;
@@ -32,18 +31,28 @@ class Array {
 			}
 			return (*this);
 		}
-
 		~Array() {
 			if (_size > 0)
 				delete [] _array;
 		}
-
-		void test( void ) const {
-			if (_array == nullptr) {
-				std::cout << "empty _array" << std::endl;
-				return ;
-			}
-			std::cout << _array[0] << std::endl;
+		unsigned int size() const {
+			return (_size);
+		}
+		class OutOfRange : public std::exception {
+			public:
+				virtual const char*    what()const throw() {
+					return ("Out of range");
+				}
+		};
+		T & operator[](unsigned int number) {
+			if (number >= _size)
+				throw (OutOfRange());
+			return (_array[number]);
+		}
+		const T & operator[](unsigned int number) const{
+			if (number >= _size)
+				throw (OutOfRange());
+			return (_array[number]);
 		}
 	private:
 		T * _array;

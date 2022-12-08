@@ -14,7 +14,7 @@
 NAME			=	array
 CC				=	c++
 CSAN			=	-fsanitize=address -g3
-CFLAGS			=	-Wall -Wextra -Werror -std=c++98 $(CSAN)
+CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)
 RM				=	rm -rf
 
 #	FILE & PATH
