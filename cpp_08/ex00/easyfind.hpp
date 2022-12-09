@@ -2,6 +2,7 @@
 # define _EASYFIND_H_
 
 #include <iostream>
+#include <iterator>
 #include <vector>
 #include <list>
 
@@ -10,7 +11,7 @@ class OutOfRange : public std::exception {
 		virtual const char*    what()const throw();
 };
 template<typename T>
-typename T::iterator easyfind(T container, int nb_find) {
+typename T::iterator easyfind(T & container, int nb_find) {
 	typedef typename T::iterator iterator;
 	iterator it;
 	iterator it_end = container.end();
