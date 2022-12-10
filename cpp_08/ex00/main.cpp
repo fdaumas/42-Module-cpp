@@ -19,8 +19,8 @@ int main() {
 		std::cout << (*easyfind(lst, 68)) << std::endl;
 		std::cout << (std::distance(lst.begin(), easyfind(lst, 68)))
 				  << std::endl;
-		std::cout << (*easyfind(lst, 10)) << std::endl;
-		std::cout << (*easyfind(lst, 999)) << std::endl;
+		std::cout	<< (*easyfind(lst, 10)) << std::endl;
+		std::cout	<< (*easyfind(lst, 999)) << std::endl;
 	} catch (std::exception &exception) {
 		std::cerr << exception.what() << std::endl;
 	}
