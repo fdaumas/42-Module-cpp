@@ -14,12 +14,11 @@ class Span {
 		~Span();
 		void addNumber(int number);
 		void addRandomNumberRange(unsigned int start, unsigned int end);
+		int shortestSpan();
+		int longestSpan();
+		void verificationNumber();
 		void test_3_nb();
-		void test() {
-			int i = 0;
-			for (std::vector<int>::iterator it = _span.begin(); it != _span.end(); it++, i++)
-				std::cout << "number " << i <<" = " << *it << std::endl;
-		}
+		void test();
 		class CppIsShit : public std::exception {
 			public:
 				virtual const char*	what() const throw();
@@ -28,11 +27,15 @@ class Span {
 			public:
 				virtual const char*	what() const throw();
 		};
+		class needMoreNumber : public std::exception {
+			public:
+				virtual const char*	what() const throw();
+		};
 	private:
 		std::vector<int> _span;
 		unsigned int _nMax;
 		unsigned int _cursorPos;
-
+		unsigned int _size;
 };
 
 #endif
