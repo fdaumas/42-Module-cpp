@@ -9,8 +9,26 @@ Span::Span(unsigned int nMax) :
 	_cursorPos(_nMax),
 	_size(0) {
 }
-
+Span::Span(const Span &cp) :
+	_span(std::vector<int>()),
+	_nMax(cp._nMax),
+	_cursorPos(cp._cursorPos),
+	_size(cp._size) {
+	for(unsigned int i = 0; i < _size; i++)
+		this->_span.push_back(cp._span[i]);
+}
 Span::~Span() {
+}
+Span & Span::operator=(const Span & cp) {
+	if (this == &cp)
+		return (*this);
+	this->_span.clear();
+	this->_size = cp._size;
+	this->_nMax = cp._nMax;
+	this->_cursorPos = cp._cursorPos;
+	for (unsigned int i = 0; i < this->_size; i++)
+		this->_span.push_back(cp._span[i]);
+	return (*this);
 }
 
 void Span::addNumber(int number) {

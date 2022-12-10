@@ -11,7 +11,7 @@ int main() {
 	}
 	std::cout << std::endl;
 //############################################################################//
-	std::cout << "###Crash needed and print all_vector###" << std::endl;
+	std::cout << "###Crash needed and print all_vector & test copy constructor / operator###" << std::endl;
 	Span span = Span(3);
 	span.addNumber(5);
 	span.addNumber(12);
@@ -21,7 +21,11 @@ int main() {
 	} catch (std::exception &exception) {
 		std::cerr << exception.what() << std::endl;
 	}
-	span.test_3_nb();
+	Span cp_constru = Span(span);
+	cp_constru.test_3_nb();
+	Span op_cp_constru(1);
+	op_cp_constru = cp_constru;
+	op_cp_constru.test_3_nb();
 	std::cout << std::endl;
 //############################################################################//
 	std::cout << "###test addRandomNumberRange###" << std::endl;
@@ -38,6 +42,7 @@ int main() {
 	bigest_span.addRandomNumberRange(0, 9999);
 	std::cout << "shortest span = " << bigest_span.shortestSpan()
 			<< " ; longest span = " << bigest_span.longestSpan() << std::endl;
+	std::cout << std::endl;
 //############################################################################//
 	std::cout << "###test exception###" << std::endl;
 	Span small_span = Span(50);
