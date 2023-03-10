@@ -75,6 +75,7 @@ int main (int argc, char *argv[])
 			if (rpn_stack.size() < 2)
 			{
 				std::cout << "Error\nYou don't have 2 numbers in your stack" << std::endl;
+				return 3;
 			}
 			if (!operation(&rpn_stack, argv[1][index]))
 				return 3;
