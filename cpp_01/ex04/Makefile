@@ -21,10 +21,9 @@ CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)
 RM				=	rm -rf
 
 #	FILE & PATH
-HEADER			=	replaceFile.hpp
+HEADER			=	
 
-SRCS			=	main.cpp\
-					replaceFile.cpp
+SRCS			=	main.cpp
 
 DIR_OBJS		=	.objs
 LST_OBJS		=	$(SRCS:.cpp=.o)

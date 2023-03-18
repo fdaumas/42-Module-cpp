@@ -4,7 +4,7 @@
 #include "C.hpp"
 
 int main() {
-	std::srand(std::time(nullptr));
+	std::srand(time(nullptr));
 
 	Base* test = generate();
 

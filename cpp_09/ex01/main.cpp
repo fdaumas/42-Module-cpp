@@ -86,6 +86,7 @@ int main (int argc, char *argv[])
 			return 2;
 		}
 	}
-	std::cout << rpn_stack.top() << std::endl;
+	if (!rpn_stack.empty())
+		std::cout << rpn_stack.top() << std::endl;
 	return 0;
 }

@@ -1,84 +1,55 @@
-#include "replaceFile.hpp"
-#include <cstdio>
-#include <cstdlib>
+#include <iostream>
+#include <fstream>
 #include <string>
+#include <string.h>
+int main( int ac, char *av[] )   {
 
-replaceFile::replaceFile(char *path, std::string s1, std::string s2) {
-	this->_s1 = s1;
-	this->_s2 = s2;
-	FILE* fd = std::fopen(path, "r");
-	if(!fd) {
-		std::perror("File opening failed");
-		std::exit (EXIT_FAILURE);
-	}
-	set_old_string(fd);
-	std::fclose(fd);
+    std::size_t found;
+    std::string line;
+    std::string str;
+	std::string first_arg;
+	std::string filename = first_arg + ".replace";
+
+    if ( ac != 4 )    {
+
+        std::cout << "You must launch the program like this : < ./sed file s1 s2 >" << std::endl;
+        return 1;
+    }
+    if ( strlen( av[2] ) == 0 )    {
+
+        std::cout << "You cannot have empty str1" << std::endl;
+        return 1;
+    }
+    std::ifstream myFile ( av[1] );
+    if ( !myFile.is_open() )  {
+
+        std::cout << "Can't open file " << av[1] << std::endl;
+        return 1;
+    }
+    else   {
+
+        while ( std::getline( myFile, line ) )  {
+
+            str.append( line + '\n' );
+        }
+    }
+    found = str.find( av[2] );
+    while ( found != std::string::npos )   {
+
+        str.erase( found, strlen( av[2] ) );
+        str.insert( found, av[3] );
+        found = str.find( av[2], found + 1,  strlen( av[2] ) );
+    }
+    myFile.close();
+	std::ofstream out(filename.c_str());
+    if (!out.is_open()) {
+
+        std::cout << "Can't open file" << av[1] << ".replace" << std::endl;
+        return 1;
+    }
+    else    {
+        out << str;
+    }
+    out.close();
+    return 0;
 }
-
-replaceFile::~replaceFile() {
-}
-
-bool replaceFile::ft_strncmp(std::string src, std::string s1, int len) {
-	int index = 0;
-
-	while (src[index] && index < len) {
-		if (src[index] != s1[index])
-			return (false);
-		index++;
-	}
-	if (s1[index])
-		return (false);
-	return (true);
-}
-
-void replaceFile::old_to_new(int len) {
-	int index = 0;
-	char c[2];
-
-	c[1] = '\0';
-	while (this->_old_string[index]) {
-		if (ft_strncmp(&this->_old_string[index], this->_s1, len)) {
-			this->_new_string.append(this->_s2);
-			index += len;
-		}
-		else {
-			c[0] = this->_old_string[index];
-			this->_new_string.append(c);
-			index++;
-		}
-	}
-}
-
-void replaceFile::new_to_file(char *path) {
-	FILE* fd = std::fopen(std::strcat(path, ".replace"), "w");
-
-	if(!fd) {
-		std::perror("File opening failed");
-		std::exit (EXIT_FAILURE);
-	}
-
-	int index = 0;
-	while (this->_new_string[index]) {
-		std::fputc(this->_new_string[index], fd);
-		index++;
-	}
-	std::fclose(fd);
-}
-
-void replaceFile::set_old_string(FILE *fd) {
-	char c[2];
-
-	c[1] = '\0';
-	while ((c[0] = (std::fgetc(fd))) != EOF) {
-		this->_old_string.append(c);
-	}
-	this->_old_string.append("\0");
-	if (std::ferror(fd)) {
-		std::cout << "error when reading" << std::endl;
-		std::exit (1);
-	}
-}
-
-std::string replaceFile::get_old_string(void) const {return (this->_old_string);};
-
-std::string replaceFile::get_new_string(void) const {return (this->_new_string);};

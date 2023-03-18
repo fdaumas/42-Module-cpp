@@ -126,6 +126,11 @@ int main (int argc, char *argv[])
 			std::cout << "Error: negative value" << std::endl;
 			return 1;
 		}
+		else if (atoi(argv[index]) == 0 && argv[index][0] != '0')
+		{
+			std::cout << "Error: bad argument" << std::endl;
+			return 1;
+		}
 		list1.push_back(atoi(argv[index]));
 	}
 	if (issorted(list1))

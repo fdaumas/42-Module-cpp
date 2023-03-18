@@ -6,12 +6,12 @@
 #    By: fdaumas <fdaumas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/12 00:43:20 by fdaumas           #+#    #+#              #
-#    Updated: 2022/10/18 19:39:51 by fdaumas          ###   ########.fr        #
+#    Updated: 2023/03/18 15:52:26 by fdaumas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #___SETUP
-NAME			= 	BTC
+NAME			= 	btc
 CC				=	c++
 CSAN			=	-fsanitize=address
 CFLAGS			=	-Wall -Wextra -Werror -std=c++98 #$(CSAN)

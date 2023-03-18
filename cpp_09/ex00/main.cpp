@@ -80,7 +80,7 @@ int main (int argc, char *argv[])
 	std::ifstream infile_data("data.csv");
 	if (infile_data.fail())
 	{
-		std::cerr << "Filed to access " << "data.csv" << std::endl;
+		std::cerr << "Failed to access " << "data.csv" << std::endl;
 		return 1;
 	}
 	std::string line, date;
@@ -98,7 +98,7 @@ int main (int argc, char *argv[])
 	std::ifstream infile_input(argv[1]);
 	if (infile_input.fail())
 	{
-		std::cerr << "Filed to access " << argv[1] << std::endl;
+		std::cerr << "Failed to access " << argv[1] << std::endl;
 		return 1;
 	}
 
