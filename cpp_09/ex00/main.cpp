@@ -14,7 +14,7 @@ bool error(std::string & line) {
 bool verif_line(std::string & line) {
 	int index = 0, verif = 0;
 	while (index < 4) {
-		if (line[index] < '0' && line[index] > '9')
+		if (line[index] < '0' || line[index] > '9')
 			return error(line);
 		++index;
 	}
@@ -24,7 +24,7 @@ bool verif_line(std::string & line) {
 	++index;
 
 	while (index < 7) {
-		if (line[index] < '0' && line[index] > '9')
+		if (line[index] < '0' || line[index] > '9')
 			return error(line);
 		verif = verif * 10 + line[index] - '0';
 		++index;
@@ -38,7 +38,7 @@ bool verif_line(std::string & line) {
 	++index;
 
 	while (index < 10) {
-		if (line[index] < '0' && line[index] > '9')
+		if (line[index] < '0' || line[index] > '9')
 			return error(line);
 		verif = verif * 10 + line[index] - '0';
 		++index;

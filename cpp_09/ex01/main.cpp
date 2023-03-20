@@ -14,9 +14,9 @@ int ischarset(char c)
 	return 0;
 }
 
-bool operation(std::stack<int> *rpn_stack, char c)
+bool operation(std::stack<double> *rpn_stack, char c)
 {
-	int n1, n2;
+	double n1, n2;
 	if (c == '+')
 	{
 		n1 = rpn_stack->top();
@@ -64,7 +64,7 @@ int main (int argc, char *argv[])
 		std::cerr << "Bad arguments \nUsage ./RPN \"1 2 5 + +\"" << std::endl;  
 		return 1;
 	}
-	std::stack<int> rpn_stack;
+	std::stack<double> rpn_stack;
 
 	for (int index = 0; argv[1][index]; ++index)
 	{
