@@ -68,6 +68,15 @@ bool verif_line(std::string & line) {
 		std::cout << "Error: not a positive number" << std::endl; 
 		return false;
 	}
+	while (line[index] >= '0' && line[index] <='9')
+		index++;
+	while(line[index] != '\0')
+	{
+		if (line[index] == ' ')
+			index++;
+		else 
+			return error(line);
+	}
 	return true;
 }
 
