@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <iomanip>
+#include <cstdlib>
 
 bool error(std::string & line) {
 	std::cout << "Error: bad input => " << line << std::endl;
@@ -58,8 +59,19 @@ bool verif_line(std::string & line) {
 	if (line[index] != ' ')
 		return error(line);
 	++index;
-	
-	double multiplier = atof(line.substr(13).c_str());
+
+	bool double_number = false;
+	while ((line[index] >= '0' && line[index] <='9') || line[index] == '.' || line[index] == ',')
+	{
+		if (line[index] == ',')
+			line[index] = '.';
+		if (line[index] == '.' && double_number == true)
+			return false;
+		if (line[index] == '.')
+			double_number = true;
+		index++;
+	}
+	double multiplier = std::strtod(&line[13], NULL);
 	if (multiplier > 1000) {
 		std::cout << "Error: too large number" << std::endl; 
 		return false;
@@ -68,8 +80,6 @@ bool verif_line(std::string & line) {
 		std::cout << "Error: not a positive number" << std::endl; 
 		return false;
 	}
-	while (line[index] >= '0' && line[index] <='9')
-		index++;
 	while(line[index] != '\0')
 	{
 		if (line[index] == ' ')
@@ -110,13 +120,24 @@ int main (int argc, char *argv[])
 		std::cerr << "Failed to access " << argv[1] << std::endl;
 		return 1;
 	}
-
 	std::getline(infile_input, line);
-	int research, multiplier;
+	if (line != "date | value")
+	{
+		infile_input.close();
+		infile_input.open(argv[1]);
+		if (infile_input.fail())
+		{
+			std::cerr << "Failed to access " << argv[1] << std::endl;
+			return 1;
+		}
+	}
+
+	int research;
+	double multiplier;
 	while (std::getline(infile_input, line)) {
 		if (!verif_line(line))
 			continue ;
-		multiplier = atof(line.substr(13).c_str());
+		multiplier = std::strtod(&line[13], NULL);
 		date = line.substr(0, 10);
 		date.erase(std::find(date.begin(), date.end(), '-'));
 		date.erase(std::find(date.begin(), date.end(), '-'));
